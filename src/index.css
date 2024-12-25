@@ -11,3 +11,28 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+
+/*Dashboard Start*/
+
+.dashboard {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+  background-color: #000;
+  color: white;
+  margin: 0;
+  position: relative;
+}
+
+.info {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  font-family: Arial, sans-serif;
+  color: white;
+  z-index: 1;
+}
+
+/*Dashboard End*/
