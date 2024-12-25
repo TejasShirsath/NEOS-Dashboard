@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -68,3 +69,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+=======
+# NEOS-Dashboard
+NEO's Dashboard (Near Earth Object Dashboard) is a web application that tracks and visualizes near-Earth asteroids using NASA's API. It provides insights like velocity, size, approach date, and hazard status, displayed with interactive Dashboard. 🚀
+>>>>>>> 462c34eb7f3c0cbea91a36383353a3a43f4d4bb7
