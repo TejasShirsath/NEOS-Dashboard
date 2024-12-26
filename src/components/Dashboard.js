@@ -2,27 +2,7 @@ import React, { useEffect, useRef } from 'react';
 
 const Dashboard = () => {
   const canvasRef = useRef(null);
-
-  const asteroids = [
-    {
-      name: "(2014 HQ124)",
-      diameterMin: 0.437,
-      diameterMax: 0.977,
-      distance: 47386089.346134067,
-      velocity: 67370.4445307069,
-      closeApproachTime: "2024-Dec-22 02:26",
-      isHazardous: true
-    },
-    {
-      name: "(2020 UJ2)",
-      diameterMin: 0.045,
-      diameterMax: 0.101,
-      distance: 58373587.767936663,
-      velocity: 59995.5695509838,
-      closeApproachTime: "2024-Dec-22 16:29",
-      isHazardous: false
-    }
-  ];
+  const animationRef = useRef(null);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -31,50 +11,84 @@ const Dashboard = () => {
     const earthX = canvas.width / 2;
     const earthY = canvas.height / 2;
 
+    // Initialize asteroids with starting positions
+    const asteroids = [
+      {
+        name: "(2014 HQ124)",
+        diameterMax: 0.977,
+        isHazardous: true,
+        startX: -100,
+        startY: 100
+      },
+      {
+        name: "(2020 UJ2)",
+        diameterMax: 0.101,
+        isHazardous: false,
+        startX: canvas.width + 100,
+        startY: 400
+      }
+    ];
+
     const drawEarth = () => {
       ctx.beginPath();
       ctx.arc(earthX, earthY, earthRadius, 0, Math.PI * 2, false);
       ctx.fillStyle = 'blue';
       ctx.fill();
+      ctx.strokeStyle = 'white';
       ctx.stroke();
     };
 
     const drawAsteroid = (asteroid, xPos, yPos) => {
+      const radius = asteroid.diameterMax * 50;
       ctx.beginPath();
-      ctx.arc(xPos, yPos, (asteroid.diameterMax * 10), 0, Math.PI * 2, false);
+      ctx.arc(xPos, yPos, radius, 0, Math.PI * 2, false);
       ctx.fillStyle = asteroid.isHazardous ? 'red' : 'gray';
       ctx.fill();
+      ctx.strokeStyle = 'white';
       ctx.stroke();
+
+      // Draw asteroid name
+      ctx.font = '14px Arial';
+      ctx.fillStyle = 'white';
+      ctx.textAlign = 'center';
+      ctx.fillText(asteroid.name, xPos, yPos + radius + 15);
     };
 
     const animateAsteroids = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       drawEarth();
+
       asteroids.forEach((asteroid, index) => {
-        const asteroidX = earthX + Math.cos(index * Math.PI / 2) * (canvas.width / 2 - 100);
-        const asteroidY = earthY + Math.sin(index * Math.PI / 2) * (canvas.height / 2 - 100);
-        drawAsteroid(asteroid, asteroidX, asteroidY);
+        // Update asteroid position
+        if (index === 0) {
+          asteroid.startX += 2; // Move right
+          asteroid.startY += 1; // Move downward
+        } else {
+          asteroid.startX -= 2; // Move left
+          asteroid.startY -= 1; // Move upward
+        }
+        
+        // Draw the asteroid
+        drawAsteroid(asteroid, asteroid.startX, asteroid.startY);
       });
-      requestAnimationFrame(animateAsteroids);
+
+      animationRef.current = requestAnimationFrame(animateAsteroids);
     };
 
     animateAsteroids();
 
-    // Cleanup function to cancel animation frame
+    // Cleanup function
     return () => {
-      cancelAnimationFrame(animateAsteroids);
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current);
+      }
     };
-  }, []); // Empty dependency array since we don't have any dependencies
+  }, []);
 
   return (
     <div className="dashboard">
-      <div className="info">
-        <h3>NEO's Dashboard</h3>
-      </div>
       <canvas
         ref={canvasRef}
-        width={800}
-        height={600}
         className="tracker-canvas"
       />
     </div>
