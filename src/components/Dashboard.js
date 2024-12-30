@@ -95,7 +95,7 @@ const Dashboard = () => {
       ctx.fillStyle = asteroid.isHazardous ? '#ff4444' : '#ffffff';
       ctx.fill();
 
-      ctx.fillStyle = '#ffffff';
+      ctx.fillStyle = asteroid.isHazardous ? '#ff4444' : '#ffffff';
       ctx.font = '12px Arial';
       ctx.fillText(`(${asteroid.name})`, x, y - 10);
     });
