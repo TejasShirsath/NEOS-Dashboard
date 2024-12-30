@@ -36,7 +36,7 @@ const Dashboard = () => {
         isHazardous: neo.is_potentially_hazardous_asteroid,
         missDistance: parseFloat(neo.close_approach_data[0].miss_distance.kilometers),
         initialAngle: Math.random() * Math.PI * 2,
-        orbitSpeed: Math.random() * 3 + 0.1 
+        orbitSpeed: parseFloat(neo.close_approach_data[0].relative_velocity.kilometers_per_second) / 100
       })));
     } catch (error) {
       console.error('Failed to fetch asteroid data:', error);
