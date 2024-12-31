@@ -1,75 +1,78 @@
-<<<<<<< HEAD
-# Getting Started with Create React App
+# NEOS Dashboard 🌌
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+The **NEOS Dashboard** (Near-Earth Object Dashboard) is a React-based web application that tracks and visualizes near-Earth asteroids using NASA's API. It provides insights such as velocity, size, approach date, and hazard status, displayed through an interactive dashboard.
 
-## Available Scripts
 
-In the project directory, you can run:
 
-### `npm start`
+## Features ✨
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **Real-Time Data**: Fetches up-to-date information on near-Earth objects.
+- **Orbital Visualization**: Displays an interactive orbital map of NEOs with planetary orbits.
+- **Detailed Asteroid Information**: Displays velocity, size, approach date, and hazard status.
+- **Date Filtering**: Users can specify a start and end date to filter asteroid data.
+- **Dynamic Updates**: The asteroid list and visualization dynamically update based on the selected date range.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Demo 🚀
 
-### `npm run build`
+Experience the live application: [NEOS Dashboard Live Demo](https://neos-dashboard.vercel.app/)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+![Dashboard Screenshot](https://github.com/user-attachments/assets/630c1c3a-3634-49c2-8001-e6cce9a2e0c8)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+## Technologies Used 🛠️
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- **Frontend**: React, Tailwind CSS
+- **API**: NASA's NeoWs (Near Earth Object Web Service) API
+- **Libraries**: Lucide-React
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Installation 📥
 
-## Learn More
+To set up the project locally:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+1. **Clone the repository**:  
+   ```bash
+   git clone https://github.com/TejasShirsath/NEOS-Dashboard.git
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+2. **Navigate to the Project Directory**:  
+   ```bash
+   cd NEOS-Dashboard
 
-### Code Splitting
+3. **Install Dependencies**:  
+   ```bash
+   npm install
+   
+4. **Start the Development Server**:  
+   ```bash
+   npm start
+   ```
+   
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Usage 🌍
 
-### Analyzing the Bundle Size
+1. Launch the website to access real-time data on asteroids.
+2. View detailed information about each asteroid.
+3. Explore interactive orbital map of NEOs with planetary orbits
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-### Making a Progressive Web App
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## License 📜
 
-### Advanced Configuration
+This project is licensed under the [MIT License](LICENSE).
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
-### Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## Acknowledgments 💡
 
-### `npm run build` fails to minify
+- [NASA NeoWs API](https://api.nasa.gov/)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-=======
-# NEOS-Dashboard
-NEO's Dashboard (Near Earth Object Dashboard) is a web application that tracks and visualizes near-Earth asteroids using NASA's API. It provides insights like velocity, size, approach date, and hazard status, displayed with interactive Dashboard. 🚀
->>>>>>> 462c34eb7f3c0cbea91a36383353a3a43f4d4bb7
+
+## Team: Dani G German
+- Tejas Shirsath
+- Param Sheth
+- Swayam Dhanawade
+- Tanishq Kelvalkar
