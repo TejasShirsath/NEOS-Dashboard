@@ -10,7 +10,7 @@ const Dashboard = () => {
   const [lastPos, setLastPos] = useState({ x: 0, y: 0 });
   const startTime = useRef(Date.now());
 
-  const SCALE = 100000;
+  const SCALE = 500000;
   const AU_TO_KM = 149597870.7;
 
   const planets = [
@@ -134,78 +134,84 @@ const Dashboard = () => {
   }, []);
 
   return (
-    <div className="relative w-full h-screen bg-black text-white font-sans">
-      <div className="fixed top-5 left-1/2 -translate-x-1/2 flex gap-4 z-10">
-        <span>Start Date:</span>
-        <input
-          type="date"
-          className="bg-gray-800 border border-gray-700 rounded px-2 py-1"
-          onChange={e => {
-            const endDate = document.querySelector('input[type="date"]:last-child').value;
-            fetchAsteroidData(e.target.value, endDate);
-          }}
-          defaultValue={new Date().toISOString().split('T')[0]}
-        />
-        <span>End Date:</span>
-        <input
-          type="date"
-          className="bg-gray-800 border border-gray-700 rounded px-2 py-1"
-          onChange={e => {
-            const startDate = document.querySelector('input[type="date"]:first-child').value;
-            fetchAsteroidData(startDate, e.target.value);
-          }}
-          defaultValue={new Date(Date.now() + 86400000).toISOString().split('T')[0]}
-        />
-      </div>
-
-      <div className="fixed top-24 left-5 bg-black/80 p-4 rounded-lg text-sm max-h-[80vh] overflow-y-auto">
-        <h3 className="text-lg font-bold mb-3">Near-Earth Objects</h3>
-        {asteroids.map(asteroid => (
-          <div key={asteroid.name} className="mb-4">
-            <strong>{asteroid.name}</strong>
-            <br />
-            Diameter: {asteroid.diameter.toFixed(2)} km
-            <br />
-            Velocity: {asteroid.velocity.toFixed(2)} km/s
-            <br />
-            Miss Distance: {asteroid.missDistance.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ",")} km
-            <br />
-            Status: <span className={asteroid.isHazardous ? 'text-red-400' : 'text-green-400'}>
-              {asteroid.isHazardous ? 'Potentially Hazardous' : 'Safe'}
-            </span>
-          </div>
-        ))}
-      </div>
-
-      <div className="fixed bottom-5 right-5 bg-black/80 p-2.5 rounded text-xs">
-        1 pixel = 100,000 km
-      </div>
-
+    <div className="relative w-full h-screen bg-black text-white font-sans overflow-hidden">
       <canvas
         ref={canvasRef}
-        onWheel={e => {
-          e.preventDefault();
-          setScale(s => Math.max(0.1, Math.min(s * (e.deltaY > 0 ? 0.9 : 1.1), 5)));
-        }}
-        onMouseDown={e => {
-          setIsDragging(true);
-          setLastPos({ x: e.clientX, y: e.clientY });
-        }}
+        // onWheel={e => {
+        //   e.preventDefault();
+        //   setScale(s => Math.max(0.1, Math.min(s * (e.deltaY > 0 ? 0.9 : 1.1), 5)));
+        // }}
+        // onMouseDown={e => {
+        //   setIsDragging(true);
+        //   setLastPos({ x: e.clientX, y: e.clientY });
+        // }}
         onMouseMove={e => {
           if (isDragging) {
             setOffset(prev => ({
               x: prev.x + e.clientX - lastPos.x,
-              y: prev.y + e.clientY - lastPos.y
+              y: prev.y + e.clientY - lastPos.y,
             }));
             setLastPos({ x: e.clientX, y: e.clientY });
           }
         }}
         onMouseUp={() => setIsDragging(false)}
         onMouseLeave={() => setIsDragging(false)}
-        className="block"
+        className="absolute inset-0 pointer-events-auto z-0"
       />
+  
+      {/* Overlay Container */}
+      <div className="absolute inset-0 pointer-events-none z-10">
+        {/* Control Panel */}
+        <div className="absolute top-5 left-1/2 transform -translate-x-1/2 flex gap-4 pointer-events-auto">
+          <span>Start Date:</span>
+          <input
+            type="date"
+            className="bg-gray-800 border border-gray-700 rounded px-2 py-1"
+            onChange={e => {
+              const endDate = document.querySelector('input[type="date"]:last-child').value;
+              fetchAsteroidData(e.target.value, endDate);
+            }}
+            defaultValue={new Date().toISOString().split('T')[0]}
+          />
+          <span>End Date:</span>
+          <input
+            type="date"
+            className="bg-gray-800 border border-gray-700 rounded px-2 py-1"
+            onChange={e => {
+              const startDate = document.querySelector('input[type="date"]:first-child').value;
+              fetchAsteroidData(startDate, e.target.value);
+            }}
+            defaultValue={new Date(Date.now() + 86400000).toISOString().split('T')[0]}
+          />
+        </div>
+  
+        {/* Asteroids Information Panel */}
+        <div className="absolute top-24 left-5 bg-black/80 p-4 rounded-lg text-sm max-h-[80vh] overflow-y-auto pointer-events-auto">
+          <h3 className="text-lg font-bold mb-3">Near-Earth Objects</h3>
+          {asteroids.map(asteroid => (
+            <div key={asteroid.name} className="mb-4">
+              <strong>{asteroid.name}</strong>
+              <br />
+              Diameter: {asteroid.diameter.toFixed(2)} km
+              <br />
+              Velocity: {asteroid.velocity.toFixed(2)} km/s
+              <br />
+              Miss Distance: {asteroid.missDistance.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ",")} km
+              <br />
+              Status: <span className={asteroid.isHazardous ? 'text-red-400' : 'text-green-400'}>
+                {asteroid.isHazardous ? 'Potentially Hazardous' : 'Safe'}
+              </span>
+            </div>
+          ))}
+        </div>
+  
+        {/* Scale Indicator */}
+        <div className="absolute bottom-5 right-5 bg-black/80 p-2.5 rounded text-xs pointer-events-auto">
+          1 pixel = 500,000 km
+        </div>
+      </div>
     </div>
-  );
+  );  
 };
 
 export default Dashboard;
